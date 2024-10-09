@@ -33,8 +33,8 @@ Ce projet est une application web de gestion de recettes développée avec Vue.j
 1. Cloner le repository :
 
    ```bash
-   - git clone https://github.com/FatimataAliouSall/Gestion-recettes.git
-   - cd challenge-tp-42
+   - git clone 
+   - cd 
 
 
 2. Installer les dépendances :
