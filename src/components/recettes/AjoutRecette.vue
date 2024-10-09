@@ -1,3 +1,4 @@
+
 <template>
   <div class="p-4 w-50 mx-auto">
     <div class="container">
@@ -75,14 +76,13 @@ const categorie = ref("");
 const onSubmit = async () => {
   await store.add({
     title: title.value,
-    ingredients: ingredients.value, 
+    ingredient: ingredients.value, 
     type: type.value,
-    categorie: categorie.value,
+    categorie_id: categorie.value,
   });
   router.push("/recette-list");
 };
 
-// Chargement des catégories et des recettes au montage du composant
 onMounted(async () => {
   await store.fetchCategories();
   await store.fetchRecettes();
@@ -90,5 +90,4 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-/* Styles personnalisés peuvent être ajoutés ici */
 </style>

@@ -1,17 +1,18 @@
-<template>
-    <div class="category-details-container p-4 w-50 mx-auto">
-      <h2>{{ $t("show details") }}</h2>
+
+   <template>
+    <div class="category-details-container p-5 mt-5 w-50 mx-auto">
+      <h2>{{ $t("category_details") }}</h2>
       <div v-if="categorie">
-        <h3>{{ categorie.name }}</h3>
-        <p>{{ $t("category_id") }}: {{ categorie.id }}</p>
-        <div class="actions mt-4">
-          <button class="btn btn-primary me-2" @click="editCategory">
-            <i class="fas fa-edit"></i> {{ $t("edit") }}
-          </button>
-          <button class="btn btn-danger" @click="deleteCategory">
-            <i class="fas fa-trash"></i> {{ $t("delete") }}
-          </button>
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">
+              <strong><i class="fas fa-book me-1"></i>  {{ $t("category") }} : </strong>  {{ categorie.name }}
+            </h5>
+          </div>
         </div>
+        <router-link to="/category-list" class="btn btn-primary mt-4">
+          <i class="fas fa-arrow-left me-1"></i>{{ $t("back to the list") }}
+        </router-link>
       </div>
       <div v-else>
         <p>{{ $t("category_not_found") }}</p>
@@ -20,49 +21,36 @@
   </template>
   
   <script setup>
-  import { ref, onMounted } from "vue";
-  import { useRouter, useRoute } from "vue-router";
-  import { useRecetteStore } from "../../store/recetteStore";
+  import { ref, onMounted, watchEffect } from "vue";
+  import { useRoute } from "vue-router";
+  import { useCategorieStore, useRecetteStore } from "../../store";
   
-  const router = useRouter();
+  // Variables nécessaires
   const route = useRoute();
-  const store = useRecetteStore();
+  const categorieStore = useCategorieStore();
+  const recetteStore = useRecetteStore();
   const categorie = ref(null);
+  const recettes = ref([]);
   
+  // Lorsque le composant est monté, on récupère les détails de la catégorie
   onMounted(async () => {
     const categoryId = route.params.id;
-    // Ensure categories are loaded before fetching specific category
-    if (!store.categories.length) {
-      await store.fetchCategories();
-    }
-    categorie.value = store.getCategorieById(categoryId);
+    await categorieStore.fetchCategorieById(categoryId);
+    recettes.value = recetteStore.recettesByCategory(categoryId);
   });
   
-  const editCategory = () => {
-    router.push(`/edit-category/${categorie.value.id}`);
-  };
-  
-  const deleteCategory = async () => {
-    const confirmation = confirm("Voulez-vous vraiment supprimer cette catégorie ?");
-    if (confirmation) {
-      try {
-        await store.deleteCategorie(categorie.value.id);
-        router.push("/category-list"); // Redirect after deletion
-      } catch (error) {
-        console.error("Erreur lors de la suppression de la catégorie", error);
-      }
-    }
-  };
+  // Utilisation de watchEffect pour mettre à jour la catégorie lorsque les données du store changent
+  watchEffect(() => {
+    categorie.value = categorieStore.selectedCategorie;
+  });
   </script>
   
   <style scoped>
   .category-details-container {
-    max-width: 600px;
-    margin: auto;
+    max-width: 800px;
   }
   
-  .actions button {
-    margin-right: 10px;
+  .card {
+    margin-top: 20px;
   }
   </style>
-  

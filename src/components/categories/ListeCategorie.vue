@@ -1,3 +1,4 @@
+
 <template>
   <div class="recipe-list-background p-5">
     <h2 class="text-center">{{ $t("category list") }}</h2>
@@ -12,7 +13,8 @@
       <div class="col-md-4 mb-4" v-for="categorie in categories" :key="categorie.id">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">{{ categorie.name }}</h5>
+            <h5 class="card-title"><strong>{{ $t("title") }} : </strong>   {{ categorie.name }} </h5>
+ 
           </div>
           <div class="card-footer d-flex justify-content-between">
             <router-link :to="`/categorie/edit/${categorie.id}`" class="btn btn-warning btn-sm">
@@ -33,9 +35,9 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRecetteStore } from "../../store/recetteStore";
+import { useCategorieStore } from "../../store/categorieStore"; 
 
-const store = useRecetteStore();
+const store = useCategorieStore();
 const categories = ref([]);
 
 onMounted(async () => {
@@ -43,10 +45,16 @@ onMounted(async () => {
   categories.value = store.categories;
 });
 
-const deleteCategory = async (id) => {
-  const confirmation = confirm("Are you sure you want to delete this category?");
-  if (confirmation) {
-    await store.deleteCategorie(id);
-  }
+ const deleteCategory = async (id) => {
+   const confirmation = confirm('Êtes-vous sûr de vouloir supprimer cette catégorie?');
+   if (confirmation) {
+    try {
+     await store.deleteCategorie(id);
+     alert('Catégorie supprimée avec succès.');
+        window.location.href = '/category-list'; 
+   } catch (error) {
+     alert('Erreur: Impossible de supprimer cette catégorie. Des recettes y sont associées.');
+   }
+     }
 };
 </script>

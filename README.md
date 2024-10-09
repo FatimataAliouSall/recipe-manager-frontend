@@ -8,11 +8,17 @@ Ce projet est une application web de gestion de recettes développée avec Vue.j
 
 ## Fonctionnalités
 
-- Ajouter une nouvelle recette
-- Modifier une recette existante
-- Supprimer une recette
-- Afficher les détails d'une recette
-- Interface utilisateur responsive avec Bootstrap
+Recette
+- Ajout recettes : Ajouter de nouvelles recettes.
+- Modification recettes : Modifier les recettes existantes.
+- Suppression recettes : Supprimer les recettes.
+- Affichage la liste des recettes : Visualiser toutes les recettes disponibles.
+
+Categorie
+- Ajout categories : Ajouter de nouvelles categories.
+- Modification categories : Modifier les categories existantes.
+- Suppression categories : Supprimer les categories.
+- Affichage la liste des categories : Visualiser toutes les recettes appartenant à une catégorie.
 
 ## Technologies utilisées
 
@@ -21,7 +27,6 @@ Ce projet est une application web de gestion de recettes développée avec Vue.j
 - Vue Router pour la navigation
 - Bootstrap 5 pour le design
 - Vite pour le build
-## Installation
 
 ### Prérequis
 

@@ -1,3 +1,4 @@
+
 <template>
   <div class="container mt-5">
     <div class="card">
@@ -9,16 +10,16 @@
       <div class="card-body">
         <div v-if="recette">
           <p>
-            <strong><i class="fas fa-book me-1"></i>{{ $t("title") }}:</strong> {{ recette.titre }}
+            <strong><i class="fas fa-book me-1"></i>{{ $t("title") }}:</strong> {{ recette.title }}
           </p>
           <p>
-            <strong><i class="fas fa-utensils me-1"></i>{{ $t("ingredients") }}:</strong> {{ recette.ingredients }}
+            <strong><i class="fas fa-utensils me-1"></i>{{ $t("ingredients") }}:</strong> {{ recette.ingredient }}
           </p>
           <p>
             <strong><i class="fas fa-tag me-1"></i>{{ $t("type") }}:</strong> {{ recette.type }}
           </p>
           <p>
-            <strong><i class="fas fa-list-alt me-1"></i>{{ $t("category") }}:</strong> {{ recette.categorie }}
+            <strong><i class="fas fa-list-alt me-1"></i>{{ $t("category") }}:</strong> {{ recette.categorie_name}}
           </p>
         </div>
       </div>

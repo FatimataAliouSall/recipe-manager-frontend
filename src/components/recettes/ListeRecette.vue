@@ -63,17 +63,23 @@ const selectedCategorie = ref('');
 const filteredRecettes = ref([]);
 
 const destroy = async (id) => {
-  try {
-    const confirmDeletion = window.confirm("Etes-vous sûr de vouloir supprimer cette recette ?");
-    if (confirmDeletion) {
+  const confirmDeletion = window.confirm("Êtes-vous sûr de vouloir supprimer cette recette ?");
+  if (confirmDeletion) {
+    try {
       await store.destroy(id);
-      await store.fetchRecettes(); 
-      filteredRecettes.value = store.recettes; 
+      alert("Recette supprimée avec succès.");
+      
+      // Rafraîchir la liste des recettes
+      await store.fetchRecettes();
+      window.location.href = '/recette-list';
+
+    } catch (error) {
+      console.error('Erreur lors de la suppression de la recette:', error);
+      alert("Erreur: Impossible de supprimer cette recette.");
     }
-  } catch (error) {
-    console.error(error.message);
   }
 };
+
 const searchRecettes = () => {
   // Filtre les recettes par titre et catégorie
   const newFilteredRecettes = store.recettes.filter((recette) => {
