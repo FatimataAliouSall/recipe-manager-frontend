@@ -32,21 +32,21 @@ Ce projet est une application web de gestion de recettes développée avec Vue.j
 
 1. Cloner le repository :
 
-   ```bash
-   - git clone 
-   - cd 
-
+```bash
+- git clone https://github.com/FatimataAliouSall/recipe-manager-frontend.git
+- cd recipe-manager-frontend
+```
 
 2. Installer les dépendances :
 
-
+```bash
    - npm install
-
+```
 3. Lancer le serveur de développement :
 
-
+```bash
    - npm run dev
-
+```
 
 L'application sera accessible à l'adresse http://localhost:80.
 
