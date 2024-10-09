@@ -1,4 +1,3 @@
-
 <template>
   <div class="p-4 w-50 mx-auto">
     <div class="container">
@@ -52,8 +51,12 @@
           </select>
         </div>
 
-        <button type="submit" class="btn btn-success">
+        <button type="submit" class="btn btn-success me-2">
+          <i class="fas fa-plus"></i>
           {{ $t("submit") }}
+        </button>
+        <button class="btn btn-secondary" type="button" @click="onCancel">
+          <i class="fas fa-undo"></i> {{ $t("cancel") }}
         </button>
       </form>
     </div>
@@ -61,33 +64,29 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRecetteStore } from "../../store/recetteStore";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useRecetteStore } from "../../store/recetteStore";
 
 const store = useRecetteStore();
 const router = useRouter();
 
 const title = ref("");
-const ingredients = ref(""); 
+const ingredients = ref("");
 const type = ref("");
 const categorie = ref("");
 
 const onSubmit = async () => {
   await store.add({
     title: title.value,
-    ingredient: ingredients.value, 
+    ingredient: ingredients.value,
     type: type.value,
     categorie_id: categorie.value,
   });
   router.push("/recette-list");
 };
 
-onMounted(async () => {
-  await store.fetchCategories();
-  await store.fetchRecettes();
-});
+const onCancel = () => {
+  router.push("/recette-list"); // Redirection vers la liste des recettes
+};
 </script>
-
-<style scoped>
-</style>
