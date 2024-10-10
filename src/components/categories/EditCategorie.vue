@@ -1,6 +1,6 @@
 <template>
   <div class="edit-category-container mt-5 p-4 w-50 mx-auto">
-    <h2>{{ $t("category_edit") }}</h2>
+    <h2>{{ $t("editCategory") }}</h2>
     <form @submit.prevent="onSubmit">
       <div class="mb-3">
         <label for="nomCategorie" class="form-label">{{ $t("category_name") }}</label>
