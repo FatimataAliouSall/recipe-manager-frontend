@@ -48,9 +48,15 @@
           </select>
         </div>
 
-        <button type="submit" class="btn btn-success">
+        <!-- <button type="submit" class="btn btn-success">
           {{ $t("update") }}
-        </button>
+        </button> -->
+        <button class="btn btn-primary me-2" type="submit">
+        <i class="fas fa-save"></i> {{ $t("save_changes") }}
+      </button>
+      <button class="btn btn-secondary" type="button" @click="onCancel">
+        <i class="fas fa-undo"></i> {{ $t("cancel") }}
+      </button>
       </form>
     </div>
   </div>
