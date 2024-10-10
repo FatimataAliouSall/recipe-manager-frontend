@@ -50,18 +50,32 @@ export const useCategorieStore = defineStore("categorieStore", {
                 this.loading = false;
             }
         },
-           async deleteCategorie(id) {
+        //    async deleteCategorie(id) {
+        //     this.loading = true;
+        //     try {
+        //         await axiosInstance.delete(`/categories/delete/${id}`);
+        //         await this.fetchCategories();  
+        //     } catch (error) {
+        //         this.error = 'Erreur lors de la suppression de la catégorie';
+        //         console.error(this.error, error);
+        //     } finally {
+        //         this.loading = false;
+        //     }
+        // },
+
+        async deleteCategorie(id) {
             this.loading = true;
             try {
-                await axiosInstance.delete(`/categories/delete/${id}`);
-                await this.fetchCategories();  
+              await axiosInstance.delete(`/categories/delete/${id}`);
+              this.categories = this.categories.filter(
+                (category) => category.id !== id
+              );
             } catch (error) {
-                this.error = 'Erreur lors de la suppression de la catégorie';
-                console.error(this.error, error);
+             throw error
             } finally {
-                this.loading = false;
+              this.loading = false;
             }
-        },
+          }, 
     
 
         async fetchCategorieById(id) {

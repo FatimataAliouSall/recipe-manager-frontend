@@ -45,7 +45,20 @@ onMounted(async () => {
   categories.value = store.categories;
 });
 
- const deleteCategory = async (id) => {
+//  const deleteCategory = async (id) => {
+//    const confirmation = confirm('Êtes-vous sûr de vouloir supprimer cette catégorie?');
+//    if (confirmation) {
+//     try {
+//      await store.deleteCategorie(id);
+//      alert('Catégorie supprimée avec succès.');
+//         window.location.href = '/category-list'; 
+//    } catch (error) {
+//      alert('Erreur: Impossible de supprimer cette catégorie. Des recettes y sont associées.');
+//    }
+//      }
+// };
+
+const deleteCategory = async (id) => {
    const confirmation = confirm('Êtes-vous sûr de vouloir supprimer cette catégorie?');
    if (confirmation) {
     try {
@@ -53,8 +66,14 @@ onMounted(async () => {
      alert('Catégorie supprimée avec succès.');
         window.location.href = '/category-list'; 
    } catch (error) {
-     alert('Erreur: Impossible de supprimer cette catégorie. Des recettes y sont associées.');
+    if(error){
+      alert(' Impossible de supprimer une catégorie assiocié à une recette.');
+    }else{
+      alert('Erreur lors de la suppression de la catégorie. Veuillez revoir réessayer.');
+    }
+     
    }
      }
 };
+
 </script>
