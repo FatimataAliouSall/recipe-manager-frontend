@@ -1,6 +1,6 @@
 <template>
   <div class="add-category-container p-4 w-50 mx-auto">
-    <h2>{{ $t("add_category") }}</h2>
+    <h2>{{ $t("add a category") }}</h2>
     <form @submit.prevent="onSubmit">
       <div class="mb-3">
         <label for="nomCategorie" class="form-label">{{ $t("category_name") }}</label>
@@ -8,7 +8,7 @@
           type="text"
           id="nomCategorie"
           v-model="nomCategorie"
-          placeholder="Entrez le nom de la catégorie"
+          :placeholder="$t('enter the category name')"
           class="form-control"
         />
       </div>
