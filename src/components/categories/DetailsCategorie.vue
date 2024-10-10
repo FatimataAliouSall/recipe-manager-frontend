@@ -1,7 +1,7 @@
 
    <template>
     <div class="category-details-container p-5 mt-5 w-50 mx-auto">
-      <h2>{{ $t("category_details") }}</h2>
+      <h2>{{ $t("category details") }}</h2>
       <div v-if="categorie">
         <div class="card h-100">
           <div class="card-body">
