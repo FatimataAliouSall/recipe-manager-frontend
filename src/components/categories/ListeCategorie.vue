@@ -21,7 +21,7 @@
               <i class="fas fa-edit"></i> {{ $t("edit") }}
             </router-link>
             <router-link :to="`/categorie/details/${categorie.id}`" class="btn btn-info btn-sm">
-              <i class="fas fa-eye"></i> {{ $t("view_details") }}
+              <i class="fas fa-eye"></i> {{ $t("details") }}
             </router-link>
             <button class="btn btn-danger btn-sm" @click="deleteCategory(categorie.id)">
               <i class="fas fa-trash"></i> {{ $t("delete") }}
